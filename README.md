@@ -8,4 +8,6 @@ Data Analytics & Visualization Bootcamp (Cohort 4)
 <li>06_PythonAPIs - due Thursday, July 11</li>
 <li>09_SQL - due Saturday, August 3</li>
 <li>10_Advanced SQL Data Storage and Retrieval - due Saturday, August 10</li>
+<li>11_Web - due Saturday, August 17</li>
+<li>12_Web Scraping - due Saturday, August 24</li>
 </ul>
