@@ -1,5 +1,4 @@
-# import all dependencies
-# if __name__ == "__main__":
+# Import dependencies
 import time
 import pandas as pd
 import requests
@@ -11,7 +10,9 @@ def init_browser():
     executable_path = {"executable_path": "chromedriver.exe"}
     return Browser("chrome", **executable_path, headless=True)
 
-def scrape ():
+def scrape():
+    browser = init_browser()
+    
     nasa_data = {}
     output = marsNews()
     nasa_data["mars_news"] = output[0]
@@ -21,10 +22,12 @@ def scrape ():
     nasa_data["mars_facts"] = marsFacts()
     nasa_data["mars_hemisphere"] = marsHemisphere()
 
+return nasa_data
+
 # Mars News
 def marsNews():
     # NASA URL of page to be scraped
-    news_url = 'https://mars.nasa.gov/news/'
+    news_url = "https://mars.nasa.gov/news/"
     browser.visit(news_url)
     time.sleep(1)
     # Retrieving NASA page with the requests module
@@ -32,11 +35,11 @@ def marsNews():
     # HTML object
     html = browser.html
     # Create BeautifulSoup object; parsing with html.parser
-    soup = bs(html, 'html.parser')
+    soup = bs(html, "html.parser")
     # Using Soup to find 'news_title' and 'news_p' tag
-    article = soup.find("div", class_='list_text')
-    news_title = soup.find("div", class_='content_title').text
-    news_p = article.find('div', class_='article_teaser_body').text
+    article = soup.find("div", class_="list_text")
+    news_title = soup.find("div", class_="content_title").text
+    news_p = article.find("div", class_="article_teaser_body").text
     output = [news_title, news_p]
 
 return output
@@ -44,30 +47,30 @@ return output
 # JPL Mars Images
 def marsImage():
     # MARS Space image URL 
-    image_url = 'https://www.jpl.nasa.gov/spaceimages/?search=&category=Mars'
+    image_url = "https://www.jpl.nasa.gov/spaceimages/?search=&category=Mars"
     browser.visit(image_url)
     # HTML object
     html = browser.html
     # Creating soup object
-    soup = bs(html, 'html.parser')
+    soup = bs(html, "html.parser")
     # Using soup to find .jpg image
-    image = soup.find('img', class_='thumb')['src']
+    image = soup.find("img", class_="thumb")["src"]
     # Assigning url string
-    featured_image_url = 'https://www.jpl.nasa.gov' + image
+    featured_image_url = "https://www.jpl.nasa.gov" + image
 
 return featured_image_url
 
 # Mars Weather
 def marsWeather():
-    mars_weather_url = 'https://twitter.com/marswxreport?lang=en'
+    mars_weather_url = "https://twitter.com/marswxreport?lang=en"
     browser.visit(mars_weather_url)
     time.sleep(1)
     # HTML object
     mars_weather_html = browser.html
     # Soup object
-    mars_weather_soup = bs(mars_weather_html, 'html.parser')
-    tweets = mars_weather_soup.find('ol', class_='stream-items')
-    mars_weather = tweets.find('p', class_="tweet-text").text
+    mars_weather_soup = bs(mars_weather_html, "html.parser")
+    tweets = mars_weather_soup.find("ol", class_="stream-items")
+    mars_weather = tweets.find("p", class_="tweet-text").text
 
 return mars_weathers
 
@@ -90,7 +93,7 @@ def marsHemisphere():
     # HTML object
     html = browser.html
     # Soup object
-    soup = bs(html, 'html.parser')
+    soup = bs(html, "html.parser")
     # List
     hemisphere_image_url = []
     products = soup.find("div", class_="result-list")
@@ -109,4 +112,4 @@ def marsHemisphere():
         dictionary = {"title": title, "img_url": image_url}
         mars_hemisphere.append(dictionary)
 
-    return mars_hemisphere
+return mars_hemisphere
