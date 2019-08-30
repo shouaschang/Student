@@ -8,7 +8,7 @@ import tweepy
 
 def init_browser():
     executable_path = {"executable_path": "chromedriver.exe"}
-    return Browser("chrome", **executable_path, headless=True)
+    return Browser("chrome", **executable_path, headless=False)
 
 def scrape():
     browser = init_browser()
@@ -22,7 +22,7 @@ def scrape():
     nasa_data["mars_facts"] = marsFacts()
     nasa_data["mars_hemisphere"] = marsHemisphere()
 
-return nasa_data
+    return nasa_data
 
 # Mars News
 def marsNews():
@@ -42,7 +42,7 @@ def marsNews():
     news_p = article.find("div", class_="article_teaser_body").text
     output = [news_title, news_p]
 
-return output
+    return output
 
 # JPL Mars Images
 def marsImage():
@@ -58,7 +58,7 @@ def marsImage():
     # Assigning url string
     featured_image_url = "https://www.jpl.nasa.gov" + image
 
-return featured_image_url
+    return featured_image_url
 
 # Mars Weather
 def marsWeather():
@@ -72,7 +72,7 @@ def marsWeather():
     tweets = mars_weather_soup.find("ol", class_="stream-items")
     mars_weather = tweets.find("p", class_="tweet-text").text
 
-return mars_weathers
+    return mars_weathers
 
 # Mars Facts
 def marsFacts():
@@ -84,7 +84,7 @@ def marsFacts():
     mars_data = mars_data.set_index("Description")
     mars_facts = mars_data.to_html(header = False, index = False)
 
-return mars_facts
+    return mars_facts
 
 # Mars Hemisphere
 def marsHemisphere():
@@ -112,4 +112,4 @@ def marsHemisphere():
         dictionary = {"title": title, "img_url": image_url}
         mars_hemisphere.append(dictionary)
 
-return mars_hemisphere
+        return mars_hemisphere
