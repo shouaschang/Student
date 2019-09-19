@@ -10,4 +10,6 @@ Data Analytics & Visualization Bootcamp (Cohort 4)
 <li>10_Advanced SQL Data Storage and Retrieval - due Saturday, August 10</li>
 <li>11_Web - due Saturday, August 17</li>
 <li>12_Web Scraping - due Saturday, August 31</li>
+<li>14_JavaScript - due Saturday, September 21</li>
+<li>15_Plotly - due Saturday, September 28</li>
 </ul>
